@@ -1,0 +1,14 @@
+:host {
+    .toolbar-row {
+        display: flex;
+        padding: 10px;
+        background: #eee;
+        justify-content: space-between;
+
+      &__item {
+        button + button {
+          margin-left: 10px;
+        }
+      }
+    }
+}

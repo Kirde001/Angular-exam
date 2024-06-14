@@ -1,0 +1,75 @@
+<div class="catalog">
+  <div class="catalog__sidebar">
+    <form [formGroup]="catalogFilterStateForm">
+
+      <mat-form-field class="select">
+        <mat-label>
+          Категория
+        </mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let category of catalogCategories"
+                      [value]="category.name">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <span>
+        Цена:
+      </span>
+        <mat-form-field class="number">
+          <mat-label>от</mat-label>
+          <input formControlName="minPrice"
+                 matInput
+                 type="number"
+                 min="0"
+                 max="100000">
+        </mat-form-field>
+        <mat-form-field class="number">
+          <mat-label>до</mat-label>
+          <input formControlName="maxPrice"
+                 matInput
+                 type="number"
+                 min="0"
+                 max="100000">
+        </mat-form-field>
+
+      <span>
+        Наименование:
+      </span>
+      <mat-form-field class="input">
+        <input formControlName="name"
+               matInput
+               type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Сортировка по цене</mat-label>
+        <mat-select formControlName="sortType">
+          <mat-option value="2">
+            По возрастанию
+          </mat-option>
+          <mat-option value="1">
+            По убыванию
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="catalog__content">
+    <mat-card *ngFor="let catalogItem of catalogItemsTableData | CatalogFilter:catalogFilterStateForm.value"
+              class="panel">
+      <div class="catalog__item__image">
+        Фото товара
+      </div>
+      <h3>
+        {{ catalogItem.name }}
+      </h3>
+      <p>
+        Цена: {{ catalogItem.price }}<br>
+        Категория: {{ catalogItem.category }}<br>
+        Размер скидки: {{ catalogItem.discount }}%<br>
+      </p>
+    </mat-card>
+  </div>
+</div>

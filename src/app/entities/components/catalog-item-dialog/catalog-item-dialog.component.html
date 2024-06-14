@@ -1,0 +1,52 @@
+<div class="dialog">
+  <h3>{{ !data ? "Добавление" : "Обновление" }} товара</h3>
+  <form [formGroup]="catalogItemForm">
+    <mat-form-field>
+      <mat-label>Наименование товара</mat-label>
+      <input formControlName="name"
+             matInput
+             type="text">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Цена</mat-label>
+      <input formControlName="price"
+             matInput
+             type="number"
+             min="0"
+             max="100000">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Категория</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of catalogCategories"
+                    [value]="category.name">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Размер скидки (%)</mat-label>
+      <input formControlName="discount"
+             matInput
+             type="number"
+             min="0"
+             max="100">
+    </mat-form-field>
+  </form>
+  <div class="dialog__actions">
+    <button [disabled]="!this.catalogItemForm.valid"
+            (click)='closeCatalogItemDialog(this.catalogItemForm.value)'
+            color="accent"
+            mat-raised-button>
+      Сохранить
+    </button>
+    <button (click)='closeCatalogItemDialog()'
+            color="warn"
+            mat-raised-button>
+      Отмена
+    </button>
+  </div>
+</div>

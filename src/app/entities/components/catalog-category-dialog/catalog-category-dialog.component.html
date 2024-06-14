@@ -1,0 +1,26 @@
+<div class="dialog">
+  <h3>{{ !data ? "Добавление" : "Обновление" }} категории</h3>
+  <form [formGroup]="catalogCategoryForm">
+    <mat-form-field>
+      <mat-label>
+        Наименование категории
+      </mat-label>
+      <input formControlName='name'
+             matInput
+             type="text">
+    </mat-form-field>
+  </form>
+  <div class="dialog__actions">
+    <button [disabled]="!this.catalogCategoryForm.valid"
+            (click)='closeCatalogCategoryDialog(this.catalogCategoryForm.value)'
+            color="accent"
+            mat-raised-button>
+      Сохранить
+    </button>
+    <button (click)='closeCatalogCategoryDialog()'
+            color="warn"
+            mat-raised-button>
+      Отмена
+    </button>
+  </div>
+</div>

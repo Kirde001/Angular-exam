@@ -1,0 +1,33 @@
+:host {
+  .admin {
+    display: flex;
+
+    &__column {
+      display: flex;
+      flex-direction: column;
+      flex: 0.5;
+      padding: 10px;
+
+      &__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    table {
+      th {
+        font-weight: bold;
+      }
+
+      td:last-of-type {
+        width: 220px;
+      }
+    }
+
+
+
+  }
+
+
+}

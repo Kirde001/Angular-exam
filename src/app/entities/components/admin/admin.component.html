@@ -1,0 +1,127 @@
+<div class="admin">
+  <div class="admin__column">
+    <div class="admin__column__title">
+      <h1>Категории</h1>
+      <button (click)="showCatalogCategoryDialog()"
+              color="accent"
+              mat-raised-button>
+        Добавить категорию
+      </button>
+    </div>
+
+    <table [dataSource]="catalogCategoriesDataSource"
+           mat-table
+           class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef
+            mat-header-cell>
+          Наименование категории
+        </th>
+        <td *matCellDef="let element"
+            mat-cell>
+          {{ element.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th *matHeaderCellDef
+            mat-header-cell>
+          Действия
+        </th>
+        <td *matCellDef="let element; let i = index"
+            mat-cell>
+          <button (click)="showCatalogCategoryDialog(i)"
+                  color="warn"
+                  mat-button>
+            Обновить
+          </button>
+          <button (click)="deleteCatalogItem(i)" color="warn" mat-button>Удалить</button>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="catalogCategoriesDisplayedColumns"
+          mat-header-row></tr>
+      <tr *matRowDef="let row; columns: catalogCategoriesDisplayedColumns;"
+          mat-row></tr>
+    </table>
+  </div>
+
+  <div class="admin__column">
+    <div class="admin__column__title">
+      <h1>Каталог товаров</h1>
+      <button (click)="showCatalogItemDialog()"
+              color="accent"
+              mat-raised-button>
+        Добавить товар
+      </button>
+    </div>
+
+    <table [dataSource]="catalogItemsDataSource"
+           mat-table
+           class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef
+            mat-header-cell>
+          Наименование товара
+        </th>
+        <td *matCellDef="let element"
+            mat-cell>
+          {{ element.name }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th *matHeaderCellDef
+            mat-header-cell>
+          Цена
+        </th>
+        <td *matCellDef="let element"
+            mat-cell>
+          {{ element.price }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <th *matHeaderCellDef
+            mat-header-cell>
+          Категория
+        </th>
+        <td *matCellDef="let element"
+            mat-cell>
+          {{ element.category }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="discount">
+        <th *matHeaderCellDef
+            mat-header-cell>
+          Размер скидки
+        </th>
+        <td *matCellDef="let element"
+            mat-cell>
+          {{ element.discount }}%
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th *matHeaderCellDef
+            mat-header-cell>
+          Действия
+        </th>
+        <td *matCellDef="let element; let i = index"
+            mat-cell>
+          <button (click)="showCatalogItemDialog(i)"
+                  color="warn"
+                  mat-button>
+            Обновить
+          </button>
+          <button (click)="deleteCatalogItem(i)"
+                  color="warn"
+                  mat-button>
+            Удалить
+          </button>
+        </td>
+      </ng-container>
+      <tr *matHeaderRowDef="catalogItemsDisplayedColumns"
+          mat-header-row></tr>
+      <tr *matRowDef="let row; columns: catalogItemsDisplayedColumns;"
+          mat-row></tr>
+    </table>
+  </div>
+</div>
